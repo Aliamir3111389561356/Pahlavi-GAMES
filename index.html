@@ -2,17 +2,34 @@
 <html lang="fa">
 <head>
   <meta charset="UTF-8">
-  <title>ورود مشتری</title>
+  <title>پنل مشتری</title>
   <style>
-    body { background: #111; color: white; font-family: sans-serif; text-align: center; padding-top: 60px; }
-    input, button { padding: 10px; margin: 10px; border-radius: 8px; border: none; }
-    #dnsPanel { display: none; }
+    body {
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 60px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+    }
+    #dnsPanel {
+      display: none;
+    }
+    h2 {
+      font-size: 24px;
+    }
   </style>
 </head>
 <body>
-  <h2>ورود مشتری</h2>
-  <input type="text" id="user"><br>
-  <input type="password" id="pass"><br>
+  <h2>ورود به پنل مشتری</h2>
+  <input type="text" id="user" placeholder="نام کاربری"><br>
+  <input type="password" id="pass" placeholder="رمز عبور"><br>
   <button onclick="enter()">ورود</button>
 
   <div id="dnsPanel">
@@ -22,15 +39,18 @@
   </div>
 
   <script>
-    const botToken = "8138490091:AAE0sTFAH59tS4ZM9Fp8tMC7eDjQZJOigCM";
-    const chatId = "7255721745";
+    const botToken = "8138490091:AAE0sTFAH59tS4ZM9Fp8tMC7eDjQZJOigCM"; // توکن بات تلگرام
+    const chatId = "7255721745"; // شناسه چت تلگرام
 
+    const validUser = "Pahlavi_x6";
+    const validPassword = "Pahlavi";
     let currentUser = "";
 
+    // ورود به پنل
     function enter() {
       const u = document.getElementById("user").value;
       const p = document.getElementById("pass").value;
-      if (localStorage.getItem(u) === p) {
+      if (u === validUser && p === validPassword) {
         document.getElementById("dnsPanel").style.display = "block";
         currentUser = u;
       } else {
@@ -38,16 +58,20 @@
       }
     }
 
+    // تولید DNS به صورت رندوم
     function generateDNS() {
-      const ipv4 = `45.${rand(0,255)}.${rand(0,255)}.${rand(1,254)}`;
-      const ipv6 = `2606:4700:${rand(1000,9999)}::${rand(1000,9999)}`;
+      const ipv4 = `45.${rand(0, 255)}.${rand(0, 255)}.${rand(1, 254)}`;
+      const ipv6 = `2606:4700:${rand(1000, 9999)}::${rand(1000, 9999)}`;
+      const dnsMessage = `DNS تولید شده:\nکاربر: ${currentUser}\nIPv4: ${ipv4}\nIPv6: ${ipv6}`;
 
-      const msg = `DNS تولید شده:\nکاربر: ${currentUser}\nIPv4: ${ipv4}\nIPv6: ${ipv6}`;
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`);
+      // ارسال پیام به ربات تلگرام
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(dnsMessage)}`);
 
+      // نمایش DNS
       document.getElementById("output").innerHTML = `DNS شما:<br>IPv4: ${ipv4}<br>IPv6: ${ipv6}`;
     }
 
+    // تابع رندم برای تولید عدد
     function rand(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
